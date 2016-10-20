@@ -146,7 +146,65 @@ public class MainActivity extends Activity implements View.OnClickListener{
         temperatureTv.setText(todayWeather.getLow()+"~"+todayWeather.getHigh());
         climateTv.setText(todayWeather.getType());
         windTv.setText("风力:"+todayWeather.getFengli());
+        updateImage(todayWeather);
         Toast.makeText(MainActivity.this, "更新成功!", Toast.LENGTH_SHORT).show();
+    }
+
+    // 根据天气和空气质量情况更新图片
+    public void updateImage(TodayWeather todayWeather) {
+        weatherImg = (ImageView)findViewById(R.id.weather_img);
+        pmImg = (ImageView) findViewById(R.id.pm2_5_img);
+        if (todayWeather.getType().equals("雾")) {
+            weatherImg.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.biz_plugin_weather_wu));
+        } else if (todayWeather.getType().equals("小雨")) {
+            weatherImg.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.biz_plugin_weather_xiaoyu));
+        } else if (todayWeather.getType().equals("中雨")) {
+            weatherImg.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.biz_plugin_weather_zhongyu));
+        } else if (todayWeather.getType().equals("大雨")) {
+            weatherImg.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.biz_plugin_weather_dayu));
+        } else if (todayWeather.getType().equals("暴雨")) {
+            weatherImg.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.biz_plugin_weather_baoyu));
+        } else if (todayWeather.getType().equals("大暴雨")) {
+            weatherImg.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.biz_plugin_weather_dabaoyu));
+        } else if (todayWeather.getType().equals("特大暴雨")) {
+            weatherImg.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.biz_plugin_weather_tedabaoyu));
+        } else if (todayWeather.getType().equals("雷阵雨")) {
+            weatherImg.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.biz_plugin_weather_leizhenyu));
+        } else if (todayWeather.getType().equals("雷阵雨冰雹")) {
+            weatherImg.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.biz_plugin_weather_leizhenyubingbao));
+        } else if (todayWeather.getType().equals("阵雨")) {
+            weatherImg.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.biz_plugin_weather_zhenyu));
+        } else if (todayWeather.getType().equals("小雪")) {
+            weatherImg.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.biz_plugin_weather_xiaoxue));
+        } else if (todayWeather.getType().equals("中雪")) {
+            weatherImg.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.biz_plugin_weather_zhongxue));
+        } else if (todayWeather.getType().equals("大雪")) {
+            weatherImg.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.biz_plugin_weather_daxue));
+        } else if (todayWeather.getType().equals("暴雪")) {
+            weatherImg.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.biz_plugin_weather_baoxue));
+        } else if (todayWeather.getType().equals("阵雪")) {
+            weatherImg.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.biz_plugin_weather_zhenxue));
+        } else if (todayWeather.getType().equals("雨夹雪")) {
+            weatherImg.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.biz_plugin_weather_yujiaxue));
+        } else if (todayWeather.getType().equals("阴")) {
+            weatherImg.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.biz_plugin_weather_yin));
+        } else if (todayWeather.getType().equals("多云")) {
+            weatherImg.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.biz_plugin_weather_duoyun));
+        } else if (todayWeather.getType().equals("晴")) {
+            weatherImg.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.biz_plugin_weather_qing));
+        } else if (todayWeather.getType().equals("沙尘暴")) {
+            weatherImg.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.biz_plugin_weather_shachenbao));
+        }
+
+        if (todayWeather.getQuality().equals("优")) {
+            pmImg.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.biz_plugin_weather_0_50));
+        } else if (todayWeather.getQuality().equals("良")) {
+            pmImg.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.biz_plugin_weather_101_150));
+        } else if (todayWeather.getQuality().equals("轻度污染") || todayWeather.getQuality().equals("中度污染")) {
+            pmImg.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.biz_plugin_weather_151_200));
+        } else if (todayWeather.getQuality().equals("重度污染")) {
+            pmImg.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.biz_plugin_weather_201_300));
+        }
     }
 
     private TodayWeather parseXML(String xmldata) {

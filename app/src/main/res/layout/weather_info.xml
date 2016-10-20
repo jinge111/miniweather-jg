@@ -150,7 +150,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5.0dip"
-                        android:src="@drawable/biz_plugin_weather_0_50"/>
+                        android:background="@drawable/biz_plugin_weather_0_50"/>
                 </LinearLayout>
                 <TextView
                     android:id="@+id/pm2_5_quality"
@@ -179,7 +179,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:src="@drawable/biz_plugin_weather_qing"/>
+                    android:background="@drawable/biz_plugin_weather_qing"/>
                 <!--今日星期-->
                 <TextView
                     android:id="@+id/week_today"
