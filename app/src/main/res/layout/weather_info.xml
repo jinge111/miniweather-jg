@@ -52,6 +52,14 @@
             android:layout_height="45.0dip"
             android:layout_toLeftOf="@+id/title_share"
             android:src="@drawable/base_action_bar_action_city"/>
+        <ProgressBar
+            android:id="@+id/title_update_progress"
+            android:layout_width="45.0dip"
+            android:layout_height="45.0dip"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+            style="@style/title_update_progressbar_style"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 
