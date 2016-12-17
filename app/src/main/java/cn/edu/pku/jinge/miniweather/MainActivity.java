@@ -108,6 +108,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         if (view.getId() == R.id.title_update_btn) {
             view.setVisibility(View.GONE);
             mShareBtn = (ImageView) findViewById(R.id.title_share);
+            mShareBtn.setOnClickListener(this);
             mUpdateProg.setVisibility(View.VISIBLE);
             // 调整布局
             adjustLayout(R.id.title_update_progress);
@@ -166,7 +167,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         mHandler.sendMessage(msg);
                     }
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Log.d("myWeather", "Exception");
                 } finally {
                     if (con != null) {
                         con.disconnect();
@@ -353,7 +354,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             if (NetUtil.getNetworkState(this) != NetUtil.NETWORN_NONE) {
                 Log.d("myWeather", "网络OK");
-                //queryWeatherCode(newCityCode);
+                queryWeatherCode(newCityCode);
             } else {
                 Log.d("myWeather", "网络挂了");
                 Toast.makeText(MainActivity.this, "网络挂了!", Toast.LENGTH_LONG).show();

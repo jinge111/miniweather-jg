@@ -51,7 +51,10 @@
             android:paddingRight="30.0dip"
             android:paddingTop="8.0dip"
             android:singleLine="true"
-            android:background="@drawable/contact_search_box_edittext_keyword_background"/>
+            android:background="@drawable/contact_search_box_edittext_keyword_background"
+            android:textColor="#ff000000"
+            android:textColorHint="#ffcccccc"
+            android:textSize="15.0sp"/>
         <ListView
             android:id="@+id/list_view"
             android:layout_below="@id/search_edit"
