@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:id="@+id/weatherlayout">
     <RelativeLayout
         android:id="@+id/title"
         android:layout_width="fill_parent"
@@ -209,7 +210,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_toRightOf="@id/weather_img"
                     android:singleLine="true"
-                    android:text="-2"
+                    android:text="-2℃~7℃"
                     android:textColor="@android:color/white"
                     android:textSize="30.0sp"/>
                 <!--天气状况-->
@@ -240,8 +241,43 @@
         </RelativeLayout>
 
         <!--六日天气信息-->
-
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <android.support.v4.view.ViewPager
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/futureviewpager"
+                android:layout_alignParentBottom="true">
+            </android.support.v4.view.ViewPager>
+        </RelativeLayout>
         <!--广告等信息-->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:background="#ff000000">
+
+        <ImageView
+            android:id="@+id/dot1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:src="@drawable/page_indicator_focused"/>
+
+        <ImageView
+            android:id="@+id/dot2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:src="@drawable/page_indicator_unfocused"/>
+
     </LinearLayout>
 
 </RelativeLayout>
