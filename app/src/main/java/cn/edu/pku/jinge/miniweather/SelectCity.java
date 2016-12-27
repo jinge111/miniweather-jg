@@ -31,6 +31,7 @@ public class SelectCity extends Activity implements View.OnClickListener{
     private EditText mEditText;
     private List<City> mCityList;
     private String SeletedId;
+    private ListView mlistView;
     private City citySelected;
     ArrayList<String> city = new ArrayList<String>();
     ArrayList<String> cityId = new ArrayList<String>();
@@ -46,7 +47,7 @@ public class SelectCity extends Activity implements View.OnClickListener{
         }
 
         setContentView(R.layout.select_city);
-        ListView mlistView = (ListView) findViewById(R.id.list_view);
+        mlistView = (ListView) findViewById(R.id.list_view);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(SelectCity.this,android.R.layout.simple_list_item_1,city);
         mlistView.setAdapter(adapter);
         tvCityName = (TextView) findViewById(R.id.title_name);
@@ -54,8 +55,9 @@ public class SelectCity extends Activity implements View.OnClickListener{
         mlistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
-                tvCityName.setText("选择城市:" + city.get(i));
-                SeletedId = cityId.get(i);
+                citySelected=mCityList.get(i);
+                tvCityName.setText("选择城市:" + citySelected.getCity());
+                //SeletedId = cityId.get(i);
             }
         });
 
@@ -78,12 +80,13 @@ public class SelectCity extends Activity implements View.OnClickListener{
 
         @Override
         public void onTextChanged(CharSequence charSequence, int i1, int i2, int i3) {
-            //final List<City> mUpdateList = new ArrayList<City>();
             final List<String> mUpdateList = new ArrayList<String>();
+            final List<City> citylist=new ArrayList<City>();
             for (City c : mCityList) {
                 // 若匹配，则加入到更新列表中
                 if (c.getCity().contains(charSequence)) {
                     mUpdateList.add(c.getCity());
+                    citylist.add(c);
                 }
             }
 
@@ -94,8 +97,8 @@ public class SelectCity extends Activity implements View.OnClickListener{
             mlistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
-                    //citySelected = mUpdateList.get(i);
-                    SeletedId = mUpdateList.get(i);
+                    citySelected = citylist.get(i);
+                    //SeletedId = mUpdateList.get(i);
                     tvCityName.setText("选择城市:" + citySelected.getCity());
                 }
             });
@@ -121,7 +124,11 @@ public class SelectCity extends Activity implements View.OnClickListener{
         switch (v.getId()) {
             case R.id.title_back:
                 Intent i = new Intent();
-                i.putExtra("cityCode", SeletedId);
+                if (citySelected != null) {
+                    i.putExtra("cityCode", citySelected.getNumber());
+                } else {
+                    i.putExtra("cityCode", "101010100");
+                }
                 setResult(RESULT_OK, i);
                 finish(); // 退出该Activity
                 break;

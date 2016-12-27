@@ -7,6 +7,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:src="@drawable/guideview1"/>
+        android:background="@drawable/guideview1"/>
 
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package cn.edu.pku.jinge.miniweather;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -127,6 +128,7 @@ public class MainActivity extends Activity implements View.OnClickListener, View
         mLocateBtn = (ImageView) findViewById(R.id.title_location);
         mLocateBtn.setOnClickListener(this);
         mUpdateProg = (ProgressBar) findViewById(R.id.title_update_progress);
+        mShareBtn = (ImageView) findViewById(R.id.title_share);
 
         if (NetUtil.getNetworkState(this) != NetUtil.NETWORN_NONE) {
             Log.d("myWeather", "网络OK");
@@ -155,7 +157,6 @@ public class MainActivity extends Activity implements View.OnClickListener, View
     public void onClick(View view) {
         if (view.getId() == R.id.title_update_btn) {
             view.setVisibility(View.GONE);
-            mShareBtn = (ImageView) findViewById(R.id.title_share);
             //mShareBtn.setOnClickListener(this);
             mUpdateProg.setVisibility(View.VISIBLE);
             // 调整布局
@@ -178,7 +179,10 @@ public class MainActivity extends Activity implements View.OnClickListener, View
             startActivityForResult(i, 1);
         }
         if (view.getId() == R.id.title_location) {
-            // 后面添加
+            AlertDialog.Builder bdr = new AlertDialog.Builder(MainActivity.this);
+            bdr.setTitle("您所在的位置为:");
+            bdr.setMessage(addr + "\n" + "\n请切换城市,并点击屏幕退出");
+            bdr.show();
         }
 
         if (view.getId() == R.id.title_share) {
